@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nabakalebara - Movie Seat Booking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .movie-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .movie-info h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .booking-form {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .screen {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin: 30px auto;
+            border-radius: 50px;
+            max-width: 600px;
+            font-weight: bold;
+            letter-spacing: 20px;
+        }
+        
+        .seating-area {
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+        
+        .row {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+            gap: 8px;
+        }
+        
+        .row-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .seat {
+            width: 35px;
+            height: 35px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            background: white;
+        }
+        
+        .seat:hover:not(.booked):not(.empty) {
+            transform: scale(1.1);
+            border-color: #667eea;
+            background: #e8eaff;
+        }
+        
+        .seat.available {
+            background: #4CAF50;
+            border-color: #4CAF50;
+            color: white;
+        }
+        
+        .seat.selected {
+            background: #667eea;
+            border-color: #667eea;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .seat.booked {
+            background: #e74c3c;
+            border-color: #e74c3c;
+            color: white;
+            cursor: not-allowed;
+        }
+        
+        .seat.empty {
+            background: transparent;
+            border: none;
+            cursor: default;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legend-box {
+            width: 25px;
+            height: 25px;
+            border-radius: 5px;
+            border: 2px solid;
+        }
+        
+        .legend-box.available {
+            background: #4CAF50;
+            border-color: #4CAF50;
+        }
+        
+        .legend-box.selected {
+            background: #667eea;
+            border-color: #667eea;
+        }
+        
+        .legend-box.booked {
+            background: #e74c3c;
+            border-color: #e74c3c;
+        }
+        
+        .selected-seats-info {
+            background: #e8eaff;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .payment-info {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+        
+        .booking-list {
+            margin-top: 30px;
+        }
+        
+        .booking-list h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .booking-item {
+            background: #f8f9fa;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .seat {
+                width: 28px;
+                height: 28px;
+                font-size: 10px;
+            }
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .modal-content h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .modal-content .btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 Nabakalebara</h1>
+            <p>Movie Seat Booking System</p>
+        </div>
+        
+        <div class="movie-info">
+            <h2>Movie Details</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Date:</span>
+                    <span>29.11.2025</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Adult (OSM):</span>
+                    <span>€3</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Adult (Non-OSM):</span>
+                    <span>€5</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Kids Below 6:</span>
+                    <span>Free</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="booking-form">
+            <h3>Your Details</h3>
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="seats">Number of Seats *</label>
+                <input type="number" id="seats" min="1" max="10" placeholder="How many seats?" required>
+            </div>
+        </div>
+        
+        <div class="screen">SCREEN</div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box available"></div>
+                <span>Available</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box selected"></div>
+                <span>Selected</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box booked"></div>
+                <span>Booked</span>
+            </div>
+        </div>
+        
+        <div class="seating-area" id="seating-area"></div>
+        
+        <div class="selected-seats-info" id="selected-info" style="display: none;">
+            <h3>Selected Seats: <span id="selected-seats-list"></span></h3>
+            <p><strong>Total Amount: €<span id="total-amount">0</span></strong></p>
+        </div>
+        
+        <div class="payment-info" id="payment-info" style="display: none;">
+            <h4>⚠️ Payment Instructions</h4>
+            <p>Please send payment to: <strong>saismitadas87@gmail.com</strong> (PayPal)</p>
+            <p>Amount: €<span id="payment-amount">0</span></p>
+        </div>
+        
+        <button class="btn" id="book-btn" disabled>Select Seats to Book</button>
+        
+        <div class="booking-list" id="booking-list">
+            <h3>Current Bookings</h3>
+            <div id="bookings-container"></div>
+        </div>
+    </div>
+    
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <h2>✅ Booking Successful!</h2>
+            <p>Your seats have been reserved:</p>
+            <p><strong id="confirmed-seats"></strong></p>
+            <p>Please complete the payment to confirm your booking.</p>
+            <p>PayPal: <strong>saismitadas87@gmail.com</strong></p>
+            <button class="btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+    
+    <script>
+        // Seat layout based on your CSV (Available seats only)
+        const seatLayout = {
+            1: [1,2,3,4,5,6,7,8,9,10,11,12,13], // Row 1
+            2: [1,2,3,4,5,6,7,8,9,10,11,12,13,14], // Row 2
+            3: [1,2,3,4,5,6,7,8,9,10,11,12,13,14], // Row 3
+            4: [1,2,3,4,5,6,7,8,9,10,11,12,13], // Row 4
+            5: [2,3,4,5,6,7,8,9,10,11], // Row 5
+            6: [2,3,4,5,6,7,8,9,10], // Row 6
+            7: [2,3,4,5,6,7,8,9], // Row 7
+            8: [12,13,14], // Row 8
+            9: [2,3,4,5,6,7,8,13,14] // Row 9
+        };
+        
+        // Pre-booked seats from CSV
+        const preBookedSeats = [
+            '7-6', '7-7', '7-8', '7-9', '7-5', '7-4', '7-3', '7-2',
+            '6-5', '6-6', '6-7', '6-8', '6-4', '6-9', '6-10',
+            '5-5', '5-6', '5-7', '5-8', '5-9', '5-4', '5-3', '5-2',
+            '4-1', '4-2', '4-3', '4-4', '4-5', '4-6', '4-7', '4-8', '4-9', '4-10', '4-11',
+            '9-9'
+        ];
+        
+        let selectedSeats = [];
+        let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+        
+        // Initialize
+        function init() {
+            renderSeats();
+            renderBookings();
+            updateBookButton();
+            
+            document.getElementById('name').addEventListener('input', updateBookButton);
+            document.getElementById('seats').addEventListener('input', updateBookButton);
+            document.getElementById('book-btn').addEventListener('click', bookSeats);
+        }
+        
+        function renderSeats() {
+            const seatingArea = document.getElementById('seating-area');
+            seatingArea.innerHTML = '';
+            
+            for (let row = 1; row <= 9; row++) {
+                const rowDiv = document.createElement('div');
+                rowDiv.className = 'row';
+                
+                const rowLabel = document.createElement('div');
+                rowLabel.className = 'row-label';
+                rowLabel.textContent = row;
+                rowDiv.appendChild(rowLabel);
+                
+                const maxSeats = 14;
+                for (let seat = 1; seat <= maxSeats; seat++) {
+                    const seatDiv = document.createElement('div');
+                    const seatId = `${row}-${seat}`;
+                    
+                    if (seatLayout[row] && seatLayout[row].includes(seat)) {
+                        seatDiv.className = 'seat';
+                        seatDiv.dataset.seat = seatId;
+                        seatDiv.textContent = seat;
+                        
+                        // Check if pre-booked or user booked
+                        const isBooked = preBookedSeats.includes(seatId) || 
+                                        bookings.some(b => b.seats.includes(seatId));
+                        
+                        if (isBooked) {
+                            seatDiv.classList.add('booked');
+                        } else {
+                            seatDiv.classList.add('available');
+                            seatDiv.addEventListener('click', toggleSeat);
+                        }
+                    } else {
+                        seatDiv.className = 'seat empty';
+                    }
+                    
+                    rowDiv.appendChild(seatDiv);
+                }
+                
+                seatingArea.appendChild(rowDiv);
+            }
+        }
+        
+        function toggleSeat(e) {
+            const seatId = e.target.dataset.seat;
+            const requestedSeats = parseInt(document.getElementById('seats').value) || 1;
+            
+            if (selectedSeats.includes(seatId)) {
+                selectedSeats = selectedSeats.filter(s => s !== seatId);
+                e.target.classList.remove('selected');
+                e.target.classList.add('available');
+            } else {
+                if (selectedSeats.length < requestedSeats) {
+                    selectedSeats.push(seatId);
+                    e.target.classList.remove('available');
+                    e.target.classList.add('selected');
+                } else {
+                    alert(`You can only select ${requestedSeats} seat(s)`);
+                }
+            }
+            
+            updateSelectedInfo();
+            updateBookButton();
+        }
+        
+        function updateSelectedInfo() {
+            const infoDiv = document.getElementById('selected-info');
+            const paymentDiv = document.getElementById('payment-info');
+            
+            if (selectedSeats.length > 0) {
+                infoDiv.style.display = 'block';
+                paymentDiv.style.display = 'block';
+                
+                document.getElementById('selected-seats-list').textContent = 
+                    selectedSeats.map(s => {
+                        const [row, seat] = s.split('-');
+                        return `${row}R-${seat}S`;
+                    }).join(', ');
+                
+                const amount = selectedSeats.length * 5; // Assuming €5 default
+                document.getElementById('total-amount').textContent = amount;
+                document.getElementById('payment-amount').textContent = amount;
+            } else {
+                infoDiv.style.display = 'none';
+                paymentDiv.style.display = 'none';
+            }
+        }
+        
+        function updateBookButton() {
+            const name = document.getElementById('name').value.trim();
+            const requestedSeats = parseInt(document.getElementById('seats').value);
+            const btn = document.getElementById('book-btn');
+            
+            if (name && requestedSeats > 0 && selectedSeats.length === requestedSeats) {
+                btn.disabled = false;
+                btn.textContent = `Book ${selectedSeats.length} Seat(s) - €${selectedSeats.length * 5}`;
+            } else {
+                btn.disabled = true;
+                btn.textContent = 'Select Seats to Book';
+            }
+        }
+        
+        function bookSeats() {
+            const name = document.getElementById('name').value.trim();
+            const booking = {
+                id: Date.now(),
+                name: name,
+                seats: [...selectedSeats],
+                amount: selectedSeats.length * 5,
+                timestamp: new Date().toLocaleString()
+            };
+            
+            bookings.push(booking);
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+            
+            // Show success modal
+            document.getElementById('confirmed-seats').textContent = 
+                selectedSeats.map(s => {
+                    const [row, seat] = s.split('-');
+                    return `${row}R-${seat}S`;
+                }).join(', ');
+            document.getElementById('success-modal').classList.add('active');
+            
+            // Reset
+            selectedSeats = [];
+            document.getElementById('name').value = '';
+            document.getElementById('seats').value = '';
+            renderSeats();
+            renderBookings();
+            updateSelectedInfo();
+            updateBookButton();
+        }
+        
+        function renderBookings() {
+            const container = document.getElementById('bookings-container');
+            container.innerHTML = '';
+            
+            bookings.forEach(booking => {
+                const div = document.createElement('div');
+                div.className = 'booking-item';
+                div.innerHTML = `
+                    <span><strong>${booking.name}</strong> - ${booking.seats.map(s => {
+                        const [row, seat] = s.split('-');
+                        return `${row}R-${seat}S`;
+                    }).join(', ')}</span>
+                    <span>€${booking.amount}</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+        
+        function closeModal() {
+            document.getElementById('success-modal').classList.remove('active');
+        }
+        
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>
