@@ -85,55 +85,6 @@
             font-weight: bold;
         }
         
-        .booking-form {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .booking-form h3 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 1.3em;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-            font-size: 0.95em;
-        }
-        
-        .required {
-            color: #e74c3c;
-        }
-        
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-        
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        
-        .form-hint {
-            font-size: 0.85em;
-            color: #666;
-            margin-top: 5px;
-        }
-        
         .payment-box {
             background: #fff3cd;
             padding: 20px;
@@ -165,8 +116,58 @@
             text-align: center;
         }
         
+        .confirmation-note {
+            background: #d1ecf1;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #0c5460;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .confirmation-note h4 {
+            color: #0c5460;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .confirmation-note p {
+            color: #0c5460;
+            line-height: 1.6;
+            font-size: 1em;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+        
         .screen-section {
             margin: 30px 0;
+        }
+        
+        .screen-section h3 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.4em;
         }
         
         .screen {
@@ -181,6 +182,22 @@
             letter-spacing: 15px;
             font-size: 1.2em;
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        .disclaimer {
+            background: #f8d7da;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #dc3545;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .disclaimer p {
+            color: #721c24;
+            font-weight: 600;
+            line-height: 1.6;
+            margin: 5px 0;
         }
         
         .seating-area {
@@ -211,50 +228,27 @@
         .seat {
             width: 40px;
             height: 40px;
-            border: 2px solid #ddd;
+            border: 2px solid #4CAF50;
             border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 13px;
             font-weight: 600;
-            background: white;
-        }
-        
-        .seat:hover:not(.booked):not(.empty) {
-            transform: scale(1.1);
-            border-color: #667eea;
-            background: #e8eaff;
-        }
-        
-        .seat.available {
             background: #4CAF50;
-            border-color: #4CAF50;
             color: white;
-        }
-        
-        .seat.selected {
-            background: #667eea;
-            border-color: #667eea;
-            color: white;
-            transform: scale(1.1);
-            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.5);
         }
         
         .seat.booked {
             background: #e74c3c;
             border-color: #e74c3c;
             color: white;
-            cursor: not-allowed;
             opacity: 0.7;
         }
         
         .seat.empty {
             background: transparent;
             border: none;
-            cursor: default;
         }
         
         .legend {
@@ -287,139 +281,9 @@
             border-color: #4CAF50;
         }
         
-        .legend-box.selected {
-            background: #667eea;
-            border-color: #667eea;
-        }
-        
         .legend-box.booked {
             background: #e74c3c;
             border-color: #e74c3c;
-        }
-        
-        .selected-seats-info {
-            background: #e8eaff;
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border-left: 5px solid #667eea;
-        }
-        
-        .selected-seats-info h4 {
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-        
-        .seats-list {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #333;
-            margin: 10px 0;
-        }
-        
-        .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 18px 40px;
-            border-radius: 12px;
-            font-size: 1.2em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-        
-        .btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
-        }
-        
-        .btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-        
-        .confirmation-note {
-            background: #d1ecf1;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid #0c5460;
-            margin: 20px 0;
-            text-align: center;
-        }
-        
-        .confirmation-note h4 {
-            color: #0c5460;
-            margin-bottom: 10px;
-        }
-        
-        .confirmation-note p {
-            color: #0c5460;
-            line-height: 1.6;
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            animation: slideIn 0.3s ease;
-        }
-        
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
-        .modal-content h2 {
-            color: #4CAF50;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-        }
-        
-        .modal-content .checkmark {
-            font-size: 4em;
-            color: #4CAF50;
-            margin-bottom: 20px;
-        }
-        
-        .modal-content p {
-            color: #666;
-            line-height: 1.8;
-            margin: 15px 0;
-        }
-        
-        .modal-content .btn {
-            margin-top: 25px;
         }
         
         @media (max-width: 768px) {
@@ -472,75 +336,13 @@
             </div>
         </div>
         
-        <div class="booking-form">
-            <h3>👤 Your Details</h3>
-            <form id="booking-form">
-                <div class="form-group">
-                    <label for="name">Full Name <span class="required">*</span></label>
-                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">Phone Number <span class="required">*</span></label>
-                    <input type="tel" id="phone" name="phone" placeholder="+49 123 456 7890" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email Address <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="seats-count">Number of Seats <span class="required">*</span></label>
-                    <select id="seats-count" name="seats-count" required>
-                        <option value="">Select number of seats</option>
-                        <option value="1">1 Seat</option>
-                        <option value="2">2 Seats</option>
-                        <option value="3">3 Seats</option>
-                        <option value="4">4 Seats</option>
-                        <option value="5">5 Seats (Maximum)</option>
-                    </select>
-                    <div class="form-hint">Maximum 5 seats per booking</div>
-                </div>
-            </form>
-        </div>
-        
         <div class="payment-box">
-            <h4>💳 Payment Information</h4>
-            <p><strong>Step 1:</strong> Select your preferred seats below</p>
-            <p><strong>Step 2:</strong> Complete payment via PayPal</p>
+            <h4>💳 Booking Instructions</h4>
+            <p><strong>Step 1:</strong> View available seats below</p>
+            <p><strong>Step 2:</strong> Note your preferred seat numbers</p>
+            <p><strong>Step 3:</strong> Complete payment via PayPal</p>
             <div class="paypal-email">saismitadas87@gmail.com</div>
-            <p><strong>Step 3:</strong> Submit the form</p>
-            <p style="margin-top: 10px; font-size: 0.95em;">⚠️ Please make payment before submitting the form</p>
-        </div>
-        
-        <div class="screen-section">
-            <h3 style="text-align: center; color: #333; margin-bottom: 20px;">Select Your Seats</h3>
-            
-            <div class="legend">
-                <div class="legend-item">
-                    <div class="legend-box available"></div>
-                    <span>Available</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-box selected"></div>
-                    <span>Selected</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-box booked"></div>
-                    <span>Booked</span>
-                </div>
-            </div>
-            
-            <div class="screen">SCREEN</div>
-            
-            <div class="seating-area" id="seating-area"></div>
-            
-            <div class="selected-seats-info" id="selected-info" style="display: none;">
-                <h4>✓ Your Selected Seats:</h4>
-                <div class="seats-list" id="selected-seats-list"></div>
-                <p style="margin-top: 10px; color: #666;">Amount to pay: <strong style="color: #667eea; font-size: 1.2em;">€<span id="total-amount">0</span></strong></p>
-            </div>
+            <p><strong>Step 4:</strong> Fill the booking form with your details and seat numbers</p>
         </div>
         
         <div class="confirmation-note">
@@ -549,24 +351,40 @@
             <p>We will send confirmation via email and WhatsApp within 24 hours.</p>
         </div>
         
-        <button class="btn" id="submit-btn" disabled>Complete Booking</button>
-    </div>
-    
-    <div class="modal" id="success-modal">
-        <div class="modal-content">
-            <div class="checkmark">✓</div>
-            <h2>Booking Submitted!</h2>
-            <p><strong>Name:</strong> <span id="confirm-name"></span></p>
-            <p><strong>Selected Seats:</strong><br><span id="confirm-seats"></span></p>
-            <p><strong>Amount:</strong> €<span id="confirm-amount"></span></p>
-            <p style="margin-top: 20px; color: #e74c3c; font-weight: bold;">
-                Please complete payment to:<br>
-                saismitadas87@gmail.com
+        <!-- REPLACE THIS URL WITH YOUR GOOGLE FORM URL -->
+        <a href=" https://forms.gle/cigS5neC7drdDDWj9" target="_blank" class="btn">
+            📝 Complete Booking Form
+        </a>
+        
+        <div class="screen-section">
+            <h3>🎬 Available Seats</h3>
+            
+            <div class="screen">SCREEN</div>
+            
+            <div class="disclaimer">
+                <p>⚠️ <strong>DISCLAIMER:</strong> The below seat booking chart is for official use only.</p>
+                <p>This section is updated every 24 hours to reflect the latest bookings.</p>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-box available"></div>
+                    <span>Available</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box booked"></div>
+                    <span>Booked</span>
+                </div>
+            </div>
+            
+            <div class="seating-area" id="seating-area"></div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+            <p style="color: #666; line-height: 1.8;">
+                <strong>Need Help?</strong><br>
+                Contact us via WhatsApp or Email for any assistance with your booking.
             </p>
-            <p style="margin-top: 15px;">
-                You will receive confirmation via email/WhatsApp after payment verification.
-            </p>
-            <button class="btn" onclick="window.location.reload()">Done</button>
         </div>
     </div>
     
@@ -589,34 +407,15 @@
         
         // Booked seats - UPDATE THIS ARRAY TO MARK SEATS AS BOOKED
         // Format: 'ROW-SEAT' (e.g., '7-6' means Row 7, Seat 6)
+        // CURRENTLY ALL SEATS ARE AVAILABLE (empty array)
         const bookedSeats = [
-            '7-6', '7-7', '7-8', '7-9', '7-5', '7-4', '7-3', '7-2',
-            '6-5', '6-6', '6-7', '6-8', '6-4', '6-9', '6-10',
-            '5-5', '5-6', '5-7', '5-8', '5-9', '5-4', '5-3', '5-2',
-            '4-1', '4-2', '4-3', '4-4', '4-5', '4-6', '4-7', '4-8', '4-9', '4-10', '4-11',
-            '9-9'
-            // ADD MORE BOOKED SEATS HERE AS NEEDED
+            // Add booked seats here as they get reserved
             // Example: '1-5', '2-10', '3-3'
         ];
         
         // =============================================================
-        // END OF CONFIGURATION
+        // END OF CONFIGURATION - Update bookedSeats array every 24 hours
         // =============================================================
-        
-        let selectedSeats = [];
-        
-        // Initialize
-        function init() {
-            renderSeats();
-            
-            document.getElementById('seats-count').addEventListener('change', updateUI);
-            document.getElementById('submit-btn').addEventListener('click', submitBooking);
-            
-            // Real-time form validation
-            ['name', 'phone', 'email'].forEach(id => {
-                document.getElementById(id).addEventListener('input', updateUI);
-            });
-        }
         
         function renderSeats() {
             const seatingArea = document.getElementById('seating-area');
@@ -638,16 +437,13 @@
                     
                     if (seatLayout[row] && seatLayout[row].includes(seat)) {
                         seatDiv.className = 'seat';
-                        seatDiv.dataset.seat = seatId;
                         seatDiv.textContent = seat;
                         
                         if (bookedSeats.includes(seatId)) {
                             seatDiv.classList.add('booked');
-                            seatDiv.title = 'This seat is already booked';
+                            seatDiv.title = 'This seat is booked';
                         } else {
-                            seatDiv.classList.add('available');
-                            seatDiv.addEventListener('click', toggleSeat);
-                            seatDiv.title = 'Click to select';
+                            seatDiv.title = `Row ${row}, Seat ${seat} - Available`;
                         }
                     } else {
                         seatDiv.className = 'seat empty';
@@ -660,120 +456,8 @@
             }
         }
         
-        function toggleSeat(e) {
-            const seatId = e.target.dataset.seat;
-            const maxSeats = parseInt(document.getElementById('seats-count').value) || 0;
-            
-            if (!maxSeats) {
-                alert('⚠️ Please select number of seats first!');
-                return;
-            }
-            
-            if (selectedSeats.includes(seatId)) {
-                // Deselect
-                selectedSeats = selectedSeats.filter(s => s !== seatId);
-                e.target.classList.remove('selected');
-                e.target.classList.add('available');
-            } else {
-                // Select
-                if (selectedSeats.length < maxSeats) {
-                    selectedSeats.push(seatId);
-                    e.target.classList.remove('available');
-                    e.target.classList.add('selected');
-                } else {
-                    alert(`⚠️ You can only select ${maxSeats} seat(s). Deselect a seat first.`);
-                }
-            }
-            
-            updateSelectedInfo();
-            updateUI();
-        }
-        
-        function updateSelectedInfo() {
-            const infoDiv = document.getElementById('selected-info');
-            
-            if (selectedSeats.length > 0) {
-                infoDiv.style.display = 'block';
-                
-                const seatsList = selectedSeats
-                    .sort((a, b) => {
-                        const [rowA, seatA] = a.split('-').map(Number);
-                        const [rowB, seatB] = b.split('-').map(Number);
-                        return rowA - rowB || seatA - seatB;
-                    })
-                    .map(s => {
-                        const [row, seat] = s.split('-');
-                        return `Row ${row} - Seat ${seat}`;
-                    }).join(', ');
-                
-                document.getElementById('selected-seats-list').textContent = seatsList;
-                
-                const amount = selectedSeats.length * 5;
-                document.getElementById('total-amount').textContent = amount;
-            } else {
-                infoDiv.style.display = 'none';
-            }
-        }
-        
-        function updateUI() {
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const requestedSeats = parseInt(document.getElementById('seats-count').value) || 0;
-            const btn = document.getElementById('submit-btn');
-            
-            const isValid = name && phone && email && 
-                           requestedSeats > 0 && 
-                           selectedSeats.length === requestedSeats;
-            
-            btn.disabled = !isValid;
-            btn.textContent = isValid ? 
-                `Submit Booking (${selectedSeats.length} Seat${selectedSeats.length > 1 ? 's' : ''} - €${selectedSeats.length * 5})` : 
-                'Complete Booking';
-        }
-        
-        function submitBooking() {
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const email = document.getElementById('email').value.trim();
-            
-            const seatsList = selectedSeats
-                .sort((a, b) => {
-                    const [rowA, seatA] = a.split('-').map(Number);
-                    const [rowB, seatB] = b.split('-').map(Number);
-                    return rowA - rowB || seatA - seatB;
-                })
-                .map(s => {
-                    const [row, seat] = s.split('-');
-                    return `Row ${row} - Seat ${seat}`;
-                }).join(', ');
-            
-            const amount = selectedSeats.length * 5;
-            
-            // Show confirmation modal
-            document.getElementById('confirm-name').textContent = name;
-            document.getElementById('confirm-seats').textContent = seatsList;
-            document.getElementById('confirm-amount').textContent = amount;
-            document.getElementById('success-modal').classList.add('active');
-            
-            // Here you would normally send data to Google Sheets
-            // For now, we'll log it
-            console.log('Booking Data:', {
-                name,
-                phone,
-                email,
-                seats: selectedSeats,
-                seatsList,
-                amount,
-                timestamp: new Date().toISOString()
-            });
-            
-            // TODO: Integrate with Google Sheets API or Google Forms
-            // sendToGoogleSheets(bookingData);
-        }
-        
         // Initialize on page load
-        init();
+        renderSeats();
     </script>
 </body>
 </html>
